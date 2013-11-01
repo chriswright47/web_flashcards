@@ -17,10 +17,24 @@ get '/decks' do
 end
 
 #game play, arriving here from erb: home
-get '/game_round/:deck_id' do
-  @deck = Deck.find(params[:deck_id])
-  @cards = @deck.cards
+get '/round_start/:deck_id' do
+  session[:counter] = 0
+  redirect '/game_play'
+end
+
+get '/game_play' do
+  if session[:counter] < deck.cards.length
+    @card = next_card
+  else
+    reset_counter
+    redirect '/results'
+  end
   erb :play
+end
+
+
+get '/results' do
+  erb :result
 end
 
 #show user how they did on the round
@@ -30,6 +44,15 @@ end
 
 #we need some kind of guess function here
 get '/guess_stuff' do
+end
+
+get '/next' do
+
+  end
+
+get '/check_answer/:result' do
+  @result = params[:result]
+  erb :_check_answer
 end
 
 ############# POSTS ##########
@@ -47,7 +70,6 @@ post '/create_user' do
     erb :index
   end
 end
->>>>>>> 1525f81a2fb3db2418ca7f6bc1d85eaeb817229a
 
 post '/login' do
   user = User.find_by_username(params[:username])
@@ -58,6 +80,11 @@ post '/login' do
   end
 end
 
+post '/guess_attempt' do
+  result = params[:guess] == params[:answer]
+  Guess.create(attempt: result)
+  redirect "/check_answer/#{result}"
+end
 
 
 

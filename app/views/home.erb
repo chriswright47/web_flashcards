@@ -3,7 +3,7 @@
 
 <ul>
   <% @all_decks.each do |deck| %>
-    <li><a href="/game_round/<%= deck.id %>"><%= deck.name %></a></li>
+    <li><a href="/round_start/<%= deck.id %>"><%= deck.name %></a></li>
   <% end %>
 </ul>
 </div>

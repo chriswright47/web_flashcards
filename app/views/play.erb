@@ -1,11 +1,10 @@
 <div class="container">
 
-<h1>Flashcard Deck: <%= @deck.name %></h1>
+<h1></h1>
 
-<p><% @card = @cards.pop %>
+<p>
   <% @question = @card.question %>
   <% @answer = @card.answer %>
-
 
 
         <%= erb :_question %>

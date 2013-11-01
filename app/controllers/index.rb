@@ -12,12 +12,14 @@ end
 
 #game play, list of decks and performance history
 get '/decks' do
-  @decks = Deck.all
+  @all_decks = Deck.all
   erb :home
 end
 
-#game play
+#game play, arriving here from erb: home
 get '/game_round/:deck_id' do
+  @deck = Deck.find(params[:deck_id])
+  @cards = @deck.cards
   erb :play
 end
 

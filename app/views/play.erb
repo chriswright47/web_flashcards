@@ -1,0 +1,11 @@
+<h1>Flashcard Deck: <%= @deck.name %></h1>
+
+<p><% @cards.each do |card| %>
+        <%= card.question %>
+        <form action= "" >
+          <label for="guess"> Type your guess: </label>
+          <input type="text" id="guess" name="guess">
+          <input type="submit" value="Check my guess">
+        </form>
+        <% end %>
+ </p>

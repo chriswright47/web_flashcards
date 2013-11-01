@@ -36,6 +36,7 @@ end
 
 post '/create_user' do
   #update user table with submitted form results
+
   user = User.new(first_name: params[:first_name], last_name: params[:last_name], username: params[:username], email: params[:email], password: params[:password])
 
   if user.authenticate(params[:password_confirmation])
@@ -46,6 +47,7 @@ post '/create_user' do
     erb :index
   end
 end
+>>>>>>> 1525f81a2fb3db2418ca7f6bc1d85eaeb817229a
 
 post '/login' do
   user = User.find_by_username(params[:username])

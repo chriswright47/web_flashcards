@@ -1,7 +1,16 @@
 $(document).ready(function() {
-  // This is called after the document has loaded in its entirety
-  // This guarantees that any elements we bind to will exist on the page
-  // when we try to bind to them
+  $("#guess_form").on("submit", function() {
+    var card_answer=document.forms["guess_form"]["answer"].value;
+    var check_guess=document.forms["guess_form"]["guess"].value;
+    if (check_guess===card_answer) {
+      //show user they were right
+}
+else {
+  //tell user they were wrong
+}
+//give user option to start next card
 
-  // See: http://docs.jquery.com/Tutorials:Introducing_$(document).ready()
+
+  });
+
 });

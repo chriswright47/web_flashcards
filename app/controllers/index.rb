@@ -36,7 +36,7 @@ end
 
 post '/create_user' do
   #update user table with submitted form results
-  User.create!(first_name: params[:first_name], last_name: params[:last_name], username: params[:username], email: params[:email], password: params[:password])
+  User.create!(first_name: params[:first_name], last_name: params[:last_name], username: params[:username], email: params[:email], password_digest: params[:password])
 
   redirect '/decks'
 end

@@ -1,10 +1,12 @@
 <div class="container">
-  <h2> Question: </h2>
+  <h2> Question <%= session[:counter] %>/<%= deck_size %>: </h2>
+
   <p><%= @question %></p>
-  <form action= "/game_round" name="guess_form" method="get" id="guess_form">
+  <form action="/guess_attempt" method='post' name="guess_form" id="guess_form">
     <label for="guess"> Type your guess: </label>
     <input type="text" id="guess" name="guess">
-    <input type="hidden" name="answer" value=<%= @answer %>>
+    <input type="hidden" name="answer" value="<%= @answer %>">
     <input type="submit" value="Check my guess">
   </form>
+
 </div>

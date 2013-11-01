@@ -112,6 +112,20 @@ namespace :db do
     require APP_ROOT.join('db', 'seeds.rb')
   end
 
+desc "do over"
+
+# task :do_over do
+#   exec("dropdb #{DB_NAME}")
+#   exec("createdb #{DB_NAME}")
+#    ActiveRecord::Migrator.migrations_paths << File.dirname(__FILE__) + 'db/migrate'
+#     ActiveRecord::Migration.verbose = ENV["VERBOSE"] ? ENV["VERBOSE"] == "true" : true
+#     ActiveRecord::Migrator.migrate(ActiveRecord::Migrator.migrations_paths, ENV["VERSION"] ? ENV["VERSION"].to_i : nil) do |migration|
+#       ENV["SCOPE"].blank? || (ENV["SCOPE"] == migration.scope)
+#     end
+#     require APP_ROOT.join('db', 'seeds.rb')
+#   end
+
+
   desc "Returns the current schema version number"
   task :version do
     puts "Current version: #{ActiveRecord::Migrator.current_version}"

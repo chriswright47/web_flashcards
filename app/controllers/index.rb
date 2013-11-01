@@ -36,7 +36,26 @@ end
 
 post '/create_user' do
   #update user table with submitted form results
-  User.create!(first_name: params[:first_name], last_name: params[:last_name], username: params[:username], email: params[:email], password: params[:password])
+  user = User.new(first_name: params[:first_name], last_name: params[:last_name], username: params[:username], email: params[:email], password: params[:password])
 
-  redirect '/decks'
+  if user.authenticate(params[:password_confirmation])
+    user.save
+    redirect to '/decks'
+  else
+    @error = "Thank you, Come Again! (Login Fail)"
+    erb :index
+  end
 end
+
+post '/login' do
+  user = User.find_by_username(params[:username])
+  if user.authenticate(params[:password])
+    redirect to '/decks'
+  else
+    redirect to '/'
+  end
+end
+
+
+
+

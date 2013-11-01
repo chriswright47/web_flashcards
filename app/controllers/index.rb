@@ -30,8 +30,8 @@ end
 
 get '/logout' do
   session.clear
-  erb :index
- end
+  redirect '/'
+end
 
 #we need some kind of guess function here
 get '/guess_stuff' do

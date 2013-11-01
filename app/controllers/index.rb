@@ -28,6 +28,11 @@ get '/results' do
   erb :results
 end
 
+get '/logout' do
+  session.clear
+  erb :index
+ end
+
 #we need some kind of guess function here
 get '/guess_stuff' do
 end
@@ -39,24 +44,26 @@ post '/create_user' do
 
   user = User.new(first_name: params[:first_name], last_name: params[:last_name], username: params[:username], email: params[:email], password: params[:password])
 
-  if user.authenticate(params[:password_confirmation])
+  if user.authenticate(params[:password_confirmation]) && user.valid?
     user.save
+    session[:user_id] = user.id
     redirect to '/decks'
   else
     @error = "Thank you, Come Again! (Login Fail)"
-    erb :index
+    erb :create_user
   end
 end
->>>>>>> 1525f81a2fb3db2418ca7f6bc1d85eaeb817229a
 
 post '/login' do
   user = User.find_by_username(params[:username])
   if user.authenticate(params[:password])
+    session[:user_id] = user.id
     redirect to '/decks'
   else
     redirect to '/'
   end
 end
+
 
 
 

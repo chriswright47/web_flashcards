@@ -3,7 +3,19 @@
   width: 600px;
   padding: 0px 20px 20px 20px;
   border: 1px dotted black;
+  background-color: #75BEF6;
+  border: 2px solid black;
+  border-radius: 15px;
 }
+
+h1 {
+  text-align: center;
+}
+
+h2 {
+  text-align: center;
+}
+
 th {
   text-align: left;
 }

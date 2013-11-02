@@ -1,29 +1,23 @@
 $(document).ready(function() {
-  $("#guess_form").on("submit", function(event) {
-
-    event.preventDefault;
+  $(document).on('submit','#submit_guess', function(event) {
+    event.preventDefault();
     var card_answer=document.forms["guess_form"]["answer"].value;
     var check_guess=document.forms["guess_form"]["guess"].value;
 
-    var data = $(this).serialize();
-    console.log(data)
-
     if (check_guess===card_answer) {
-      //show user they were right
-      $("h3").append("<h4>You got it right</h4>");
-      $.post('/guess_result/correct', function(response) {
-        console.log(response);
-        alert('stop')
-      }) ;
-    }
-    else {
-  //tell user they were wrong
-  $("h3").append("<h4>You got it wrong</h4>");
-  $.post('/guess_result/wrong');
+      console.log(check_guess===card_answer)
+      $('h1').html("Correct");
+      $.post('/guess_attempt', {correct: true})
+    } else {
+      console.log(check_guess===card_answer)
+      $('h1').html("Incorrect");
+      $.post('/guess_attempt', {correct: false})
+    };
 
-}
-
-//give user option to start next card
+    $.get('/game_play', function(data){
+      console.log(data)
+      $('.game_play_container').replaceWith(data);
+    });
+  });
 });
 
-});

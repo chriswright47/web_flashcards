@@ -34,6 +34,7 @@ get '/game_play' do
     reset_counter
     redirect '/results'
   end
+  puts "************************************************************************"
   erb :play
 end
 
@@ -109,10 +110,14 @@ post '/login' do
 end
 
 post '/guess_attempt' do
-  session[:answer] = params[:answer]
-  result = params[:guess] == params[:answer]
-  Guess.create(round_id: session[:round_id],attempt: result)
-  redirect "/check_answer/#{result}"
+  # session[:answer] = params[:answer]
+  # result = params[:guess] == params[:answer]
+  Guess.create(round_id: session[:round_id],attempt: params[:correct])
+  if request.xhr?
+    erb :_question, layout: false
+  else
+    erb :_question, layout: false
+  end
 end
 
 

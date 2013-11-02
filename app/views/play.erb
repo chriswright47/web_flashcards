@@ -1,10 +1,10 @@
-<div>
+<div class="game_play_container">
 
   <h1></h1>
   <p>
     <% @question = @card.question %>
     <% @answer = @card.answer %>
-    <%= erb :_question %>
+    <span id="spot"><%= erb :_question %></span>
   </p>
 
 </div>

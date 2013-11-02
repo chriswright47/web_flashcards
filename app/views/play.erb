@@ -1,18 +1,12 @@
-<div class="container">
+<div>
 
-<h1></h1>
+  <h1></h1>
+  <p>
+    <% @question = @card.question %>
+    <% @answer = @card.answer %>
+    <%= erb :_question %>
+  </p>
 
-<p>
-  <% @question = @card.question %>
-  <% @answer = @card.answer %>
-
-
-        <%= erb :_question, :layout => false %>
-
-
-
-
- </p>
 </div>
 
 

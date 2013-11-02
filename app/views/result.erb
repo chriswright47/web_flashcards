@@ -1,1 +1,7 @@
-<h1>We</h1>
+<div class="container">
+
+  <h1> Results: </h1>
+
+  <p> You got <%= Round.find(session[:round_id]).guesses.where(attempt: true).count %> correct of <%= Round.find(session[:round_id]).guesses.count %></p>
+
+</div>

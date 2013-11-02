@@ -37,14 +37,9 @@ get '/game_play' do
   erb :play
 end
 
-
-get '/results' do
-  erb :result
-end
-
 #show user how they did on the round
 get '/results' do
-  erb :results
+  erb :result
 end
 
 get '/logout' do

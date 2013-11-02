@@ -16,11 +16,14 @@ get '/decks' do
   erb :home
 end
 
-#game play, arriving here from erb: home
+# game play, arriving here from erb: home
+# maintaining it as a get because it's linked from a href
 get '/round_start/:deck_id' do
   session[:deck_id] = params[:deck_id]
   session[:counter] = 0
   rand_arr
+  round = Round.create(user_id: session[:user_id], deck_id: session[:deck_id])
+  session[:round_id] = round.id
   redirect '/game_play'
 end
 
@@ -99,7 +102,7 @@ end
 
 post '/guess_attempt' do
   result = params[:guess] == params[:answer]
-  Guess.create(attempt: result)
+  Guess.create(round_id: session[:round_id],attempt: result)
   redirect "/check_answer/#{result}"
 end
 

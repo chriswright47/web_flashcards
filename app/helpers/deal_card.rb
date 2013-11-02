@@ -16,10 +16,9 @@ helpers do
     session[:rand_arr] = (1..deck.cards.length).to_a.shuffle
   end
 
-
   def next_card
     inc_counter
-    deck.cards.find(session[:rand_arr][session[:counter]])
+    deck.cards.find(session[:rand_arr][session[:counter] - 1])
   end
 
   def inc_counter

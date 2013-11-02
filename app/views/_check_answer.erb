@@ -1,9 +1,15 @@
 <div class="container">
   <% if @result == "true" %>
-    <h3>You are correct! Nice job!</h3>
+      <h3>You are correct! Nice job!</h3>
+      <h4>Your answer:</h4>
+      <h4 class="display_answer"><%= @answer %></h4>
+      <h4>Was correct! Sweet!</h4>
     <% else %>
-    <h3>Sorry, your answer is incorrect</h3>
+      <h3>Sorry, your answer is incorrect</h3>
+      <h4>The correct answer is: </h4>
+      <h4 class="display_answer"><%= @answer %></h4>
     <% end %>
+
 
     <a href="/game_play"><button>Next Card</button></a>
 </div>

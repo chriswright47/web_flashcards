@@ -20,6 +20,7 @@ end
 get '/round_start/:deck_id' do
   session[:deck_id] = params[:deck_id]
   session[:counter] = 0
+  rand_arr
   redirect '/game_play'
 end
 

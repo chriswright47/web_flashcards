@@ -1,1 +1,7 @@
-<h1></h1>
+<div class="container">
+
+  <h1> Results: </h1>
+
+  <p> You got <%= Round.last.guesses.where(attempt: true).count %> correct </p>
+
+</div>

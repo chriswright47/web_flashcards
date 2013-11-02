@@ -1,6 +1,5 @@
-<div >
+<div class="container">
   <h2> Question <%= session[:counter] %>/<%= deck_size %>: </h2>
-
   <p><%= @question %></p>
   <form action="/guess_attempt" method='post' name="guess_form" id="guess_form">
     <label for="guess"> Type your guess: </label>

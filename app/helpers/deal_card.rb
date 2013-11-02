@@ -9,7 +9,7 @@ helpers do
   end
 
   def start_counter
-    session[:counter] = 1
+    session[:counter] = 0
   end
 
   def rand_arr
@@ -18,7 +18,7 @@ helpers do
 
   def next_card
     inc_counter
-    deck.cards.find(session[:rand_arr][session[:counter] - 1])
+    deck.cards.find(session[:rand_arr][session[:counter] - 1] + deck.cards.first.id - 1)
   end
 
   def inc_counter

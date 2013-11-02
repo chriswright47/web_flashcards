@@ -20,12 +20,12 @@
 <body>
   <div class="side_bar">
     <ul>
-      <li> <a class="button" href="/decks"> Play A Game </a></li><br><br>
       <% if current_user %>
-        <p> Welcome, <%= current_user.first_name %></p><br><br>
+        <p> Welcome, <%= current_user.first_name %></p><br>
       <% else %>
         <li> <a class="button" href="/create_user"> Create Account </a></li>
       <% end %>
+      <li> <a class="button" href="/decks"> Play A Game </a></li><br><br>
 
       <% if current_user %>
         <li> <a class="button" href="/logout"> Logout </a></li>

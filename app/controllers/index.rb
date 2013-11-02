@@ -18,6 +18,7 @@ end
 
 #game play, arriving here from erb: home
 get '/round_start/:deck_id' do
+  session[:deck_id] = params[:deck_id]
   session[:counter] = 0
   redirect '/game_play'
 end

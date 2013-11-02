@@ -1,7 +1,7 @@
 helpers do
 
   def deck
-    Deck.first
+    Deck.find(session[:deck_id])
   end
 
   def deck_size

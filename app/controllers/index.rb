@@ -34,13 +34,16 @@ get '/game_play' do
     reset_counter
     redirect '/results'
   end
+  puts session[:counter]
   puts "************************************************************************"
-  erb :play
+
+  erb :play, layout: !request.xhr?
+
 end
 
 #show user how they did on the round
 get '/results' do
-  erb :result
+  erb :result , layout: false
 end
 
 get '/logout' do

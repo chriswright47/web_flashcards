@@ -3,6 +3,5 @@
   <h1> Results: </h1>
 
   <p> You got <%= Round.find(session[:round_id]).guesses.where(attempt: true).count %> correct of <%= Round.find(session[:round_id]).guesses.count %></p>
-  <!-- Gotta get round object -->
 
 </div>

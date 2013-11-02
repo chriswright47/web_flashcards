@@ -47,24 +47,37 @@ get '/logout' do
   redirect '/'
 end
 
-#we need some kind of guess function here
-get '/guess_stuff' do
+get '/create_deck' do
+  erb :create_deck
 end
+#we need some kind of guess function here
 
-get '/next' do
-
-  end
 
 get '/check_answer/:result' do
+  @answer = session[:answer]
   @result = params[:result]
   erb :_check_answer
 end
 
+get '/create_card' do
+  erb :create_card
+end
+
 ############# POSTS ##########
+
+post '/create_card' do
+  Deck.last.cards.create(question: params[:question], answer: params[:answer])
+  redirect '/create_card'
+end
+
+
+post '/create_deck' do
+  Deck.create(name: params[:deck_name])
+  redirect '/create_card'
+end
 
 post '/create_user' do
   #update user table with submitted form results
-
   user = User.new(first_name: params[:first_name], last_name: params[:last_name], username: params[:username], email: params[:email], password: params[:password])
   if user.valid?
     if user.authenticate(params[:password_confirmation])
@@ -96,6 +109,7 @@ post '/login' do
 end
 
 post '/guess_attempt' do
+  session[:answer] = params[:answer]
   result = params[:guess] == params[:answer]
   Guess.create(round_id: session[:round_id],attempt: result)
   redirect "/check_answer/#{result}"

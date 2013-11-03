@@ -19,5 +19,13 @@ $(document).ready(function() {
       $('.game_play_container').replaceWith(data);
     });
   });
+
+  //Start of login test js
+  $(document).on('submit','#login_form', function(event) {
+    // console.log(event);
+    // console.log(document.forms["input"]["username"].value);
+    event.preventDefault();
+
+  });
 });
 

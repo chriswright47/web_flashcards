@@ -99,6 +99,22 @@ post '/create_user' do
 end
 
 post '/login' do
+
+  if request.xhr?
+    user = User.find_by_username(params[:username])
+    if user
+      if user.authenticate(params[:password])
+        session[:user_id] = user.id
+        #return login partial here.
+        redirect to '/'
+      else
+        #return invalid login partial here.
+      end
+    else
+      #return invalid login partial here.
+    end
+  end
+
   user = User.find_by_username(params[:username])
   if user
     if user.authenticate(params[:password])

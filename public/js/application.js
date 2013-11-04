@@ -19,5 +19,17 @@ $(document).ready(function() {
       $('.game_play_container').replaceWith(data);
     });
   });
+
+  $(document).on('submit','#login_form', function(event) {
+    event.preventDefault();
+    $.post('/login', {username: document.forms["input"]["username"].value, password: document.forms["input"]["password"].value}, function(result) {
+      if( result != "true") 
+      { 
+        $('.login_error').replaceWith(result); 
+        $('#error').fadeIn(); 
+      }
+      else { window.location.replace("/decks"); }
+    });
+  });
 });
 

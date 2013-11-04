@@ -99,6 +99,15 @@ post '/create_user' do
 end
 
 post '/login' do
+  if request.xhr?
+    user = User.find_by_username(params[:username])
+    if user && user.authenticate(params[:password])
+      session[:user_id] = user.id
+      return "true"
+    else
+      erb :login_invalid, layout: false
+    end
+  else
   user = User.find_by_username(params[:username])
   if user
     if user.authenticate(params[:password])
@@ -109,6 +118,7 @@ post '/login' do
     end
   else
     redirect to '/'
+  end
   end
 end
 
@@ -122,7 +132,3 @@ post '/guess_attempt' do
     erb :_question, layout: false
   end
 end
-
-
-
-
